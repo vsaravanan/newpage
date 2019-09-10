@@ -1,11 +1,10 @@
-import React, { Component } from "react";
+import React, { Component } from 'react'
+import CategoryTree from './CategoryTree'
 
 class App extends Component {
-  state = {};
-
   render() {
-    return <div>Welcome</div>;
+    return <CategoryTree />
   }
 }
 
-export default App;
+export default App
