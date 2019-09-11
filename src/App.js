@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import CategoryTree from './CategoryTree'
+import SideBar from './SideBar'
 import Header from './components/Header'
 
 class App extends Component {
@@ -9,8 +9,8 @@ class App extends Component {
         <header class='header'>
           <Header />
         </header>
-        <aside class='aside aside-1'>
-          <CategoryTree />
+        <aside id='mySidebar' class='aside-1 sidebar sidebar-close'>
+          <SideBar />
         </aside>
         <article class='main'>
           <p>
