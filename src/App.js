@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import SideBar from './SideBar'
 import Header from './components/Header'
-
+import { connect } from 'react-redux'
 class App extends Component {
   render() {
     return (
@@ -24,4 +24,8 @@ class App extends Component {
     )
   }
 }
+
 export default App
+
+// const mapStateToProps = state => ({})
+// export default connect(mapStateToProps)(App)
