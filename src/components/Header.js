@@ -16,7 +16,7 @@ export default class Header extends Component {
   render() {
     return (
       <header ref='header' className='header'>
-        <button class='openbtn' onClick={this.openNav}>
+        <button className='openbtn' onClick={this.openNav}>
           ☰{' '}
         </button>
       </header>

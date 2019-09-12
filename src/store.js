@@ -1,17 +1,32 @@
-import { createStore, applyMiddleware } from 'redux'
-import { routerMiddleware } from 'react-router-redux'
-// import { composeWithDevTools } from 'redux-devtools-extension'
+import { applyMiddleware, createStore } from 'redux'
+// import { compose } from 'redux' it can be replaced with instead of composeWithDevTools
+import { routerMiddleware } from 'connected-react-router'
+import { createBrowserHistory } from 'history'
+import allReducers from './reducers'
+
+import { composeWithDevTools } from 'redux-devtools-extension'
 import thunk from 'redux-thunk'
 import logger from 'redux-logger'
-import allReducers from './reducers'
-import { compose } from 'redux'
 
-const middlewares = [thunk, routerMiddleware, logger]
+export const history = createBrowserHistory()
+const routeMiddleware = routerMiddleware(history)
 
-function configureStore(initialState) {
-  // const store = createStore(allReducers, initialState, compose(applyMiddleware(...middlewares)))
-  const store = createStore(allReducers, initialState, compose(applyMiddleware(...middlewares)))
-  return store
+const middlewares = [thunk, routeMiddleware]
+
+const environment = process.env.NODE_ENV
+console.log(environment)
+console.log(process.env.REACT_APP_DB)
+
+if (environment === 'development') {
+  middlewares.push(logger)
 }
 
-export { configureStore }
+export default function configureStore(initialState) {
+  // const store = createStore(allReducers, initialState, compose(applyMiddleware(...middlewares)))
+  const store = createStore(
+    allReducers(history),
+    initialState,
+    composeWithDevTools(applyMiddleware(...middlewares)),
+  )
+  return store
+}
