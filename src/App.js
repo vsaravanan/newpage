@@ -5,12 +5,15 @@ import { connect } from 'react-redux'
 
 class App extends Component {
   render() {
+    console.log(' App sidebar_show ' + this.props.sidebar_show)
+    const sidebar_show = this.props.sidebar_show ? 'sidebar-open' : 'sidebar-close'
+
     return (
       <div className='wrapper'>
         <header className='header'>
           <Header />
         </header>
-        <aside id='mySidebar' className='aside-1 sidebar sidebar-close'>
+        <aside id='mySidebar' className={'aside-1 sidebar ' + sidebar_show}>
           <SideBar />
         </aside>
         <article className='main'>
@@ -26,5 +29,7 @@ class App extends Component {
   }
 }
 
-const mapStateToProps = state => ({})
+const mapStateToProps = state => ({
+  sidebar_show: state.sidebar.show,
+})
 export default connect(mapStateToProps)(App)

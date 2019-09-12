@@ -1,25 +1,25 @@
 import React, { Component } from 'react'
-// import { findDOMnode } from 'react-dom'
-import $ from 'jquery'
-export default class Header extends Component {
+import { connect } from 'react-redux'
+
+import { action_sidebar_toggle } from 'actions/action-sidebar'
+
+class Header extends Component {
   state = {
     sidebar: false,
   }
 
-  openNav = () => {
-    // this.setState({ sidebar: !this.state.sidebar })
-    // const el = findDOMnode(this.refs.header)
-    // $(el).slideToggle()
-    var ele = $('#mySidebar')
-    ele.toggleClass('sidebar-close sidebar-open')
-  }
   render() {
     return (
       <header ref='header' className='header'>
-        <button className='openbtn' onClick={this.openNav}>
+        <button className='openbtn' onClick={this.props.action_sidebar_toggle}>
           ☰{' '}
         </button>
       </header>
     )
   }
 }
+
+export default connect(
+  null,
+  { action_sidebar_toggle },
+)(Header)
