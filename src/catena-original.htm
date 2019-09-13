@@ -1,0 +1,37 @@
+<html>
+<head>
+<title>Find number of email ids </title>
+
+</head>
+
+<body>
+
+<script type="text/javascript">
+
+function numberOfItemsFound(findlist, alllist) {
+
+  var total = findlist.reduce((sum, value, index) => {
+    var numberOfItemsFound = alllist.filter(all => all === value).length
+    console.log(index  +  '  ' + value  +  '  ' +   numberOfItemsFound +  '  ' + sum )
+    sum = sum + numberOfItemsFound;
+    return sum;
+  }, 0)
+
+  console.log(total)
+
+return total;
+
+};
+
+  var friendList = ['friend@catena-technologies.com', 'bff@uni.edu.sg', 'provost@uni.edu.sg', 'john@doe.com'];
+  var allEmails = ['enemy@uni.edu.sg', 'bff@uni.edu.sg', 'evil@spam.com', 'bff@uni.edu.sg', 'friend@catena-technologies.com'];
+
+  var result =  numberOfItemsFound(friendList, allEmails) ;
+
+  console.log('No of email ids are found : ' + result);
+
+</script>
+
+
+</body>
+</html>
