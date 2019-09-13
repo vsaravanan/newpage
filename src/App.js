@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import SideBar from './SideBar'
+import SideBar from './components/SideBar'
 import Header from './components/Header'
 import { connect } from 'react-redux'
 import MyIFrame from './components/MyIFrame'
