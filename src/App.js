@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import SideBar from './SideBar'
 import Header from './components/Header'
 import { connect } from 'react-redux'
+import MyIFrame from './components/MyIFrame'
 
 class App extends Component {
   render() {
@@ -17,12 +18,7 @@ class App extends Component {
           <SideBar />
         </aside>
         <article className='main'>
-          <p>
-            Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis
-            egestas. Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante.
-            Donec eu libero sit amet quam egestas semper. Aenean ultricies mi vitae est. Mauris
-            placerat eleifend leo.
-          </p>
+          <MyIFrame />
         </article>
       </div>
     )

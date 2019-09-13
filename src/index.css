@@ -125,7 +125,7 @@ body {
 
 @media all and (min-width: 600px) {
   .aside-1   { flex: 1 }
-  .main    { flex: 10  }
+  .main    { flex: 5  }
   .aside-1 { order: 1 }
   .main    { order: 2 }
 }
