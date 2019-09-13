@@ -12,8 +12,8 @@ function numberOfItemsFound(findlist, alllist) {
 
   var total = findlist.reduce((sum, value, index) => {
     var numberOfItemsFound = alllist.filter(all => all === value).length
-    console.log(index  +  '  ' + value  +  '  ' +   numberOfItemsFound +  '  ' + sum )
     sum = sum + numberOfItemsFound;
+    console.log(index  +  '  ' + value  +  '  ' +   numberOfItemsFound +  '  ' + sum )
     return sum;
   }, 0)
 
