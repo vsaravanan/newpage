@@ -2,7 +2,7 @@ import axios from 'axios'
 
 const fetchMenus = () => dispatch => {
   axios
-    .get('http://localhost:4000/statichtmls')
+    .get(process.env.react_app_path_statichtmls)
     .then(res => {
       dispatch({
         type: 'data_menus',
