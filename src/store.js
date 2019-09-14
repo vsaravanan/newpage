@@ -15,7 +15,7 @@ const middlewares = [thunk, routeMiddleware]
 
 const environment = process.env.NODE_ENV
 console.log(environment)
-console.log(process.env.REACT_APP_DB)
+console.log('react_app_path_listskills : ' + process.env.react_app_path_listskills)
 
 if (environment === 'development') {
   middlewares.push(logger)

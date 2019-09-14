@@ -16,8 +16,13 @@ class SideBar extends Component {
     if (menus) {
       const statichtmls = menus.statichtmls
 
-      var navlinks = statichtmls.map(v => {
-        return <NavLink to={'/' + v}> {v} </NavLink>
+      var navlinks = statichtmls.map((v, i) => {
+        return (
+          <NavLink key={'navlink' + i} to={'/' + v}>
+            {' '}
+            {v}{' '}
+          </NavLink>
+        )
       })
     }
 

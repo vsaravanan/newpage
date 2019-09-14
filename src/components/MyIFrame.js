@@ -13,7 +13,7 @@ class MyIFrame extends Component {
           <iframe
             id='iframeid'
             title='tutorials'
-            src={'http://localhost' + pathname + '.htm'}
+            src={process.env.react_app_path_listskills + pathname + '.htm'}
             sandbox='allow-same-origin allow-forms allow-scripts allow-popups allow-top-navigation allow-top-navigation-by-user-activation'
           ></iframe>
         </div>
