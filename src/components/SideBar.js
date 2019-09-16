@@ -15,7 +15,7 @@ class SideBar extends Component {
 
     if (menus) {
       const statichtmls = menus.statichtmls
-      let delimiter = process.env.os === 'windows' ? '\\' : '/'
+      let delimiter = process.env.react_app_os === 'windows' ? '\\' : '/'
 
       var navlinks = statichtmls.map((v, i) => {
         let splitted = v.split(delimiter)
