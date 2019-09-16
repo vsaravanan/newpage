@@ -17,10 +17,14 @@ class SideBar extends Component {
       const statichtmls = menus.statichtmls
 
       var navlinks = statichtmls.map((v, i) => {
+        let splitted = v.split('\\')
+        let repeats = splitted.length - 1
+        let spaces = '.'.repeat(repeats)
+        let showmenu = spaces + splitted[splitted.length - 1]
+        // console.log(showmenu)
         return (
           <NavLink key={'navlink' + i} to={'/' + v}>
-            {' '}
-            {v}{' '}
+            {showmenu}
           </NavLink>
         )
       })
