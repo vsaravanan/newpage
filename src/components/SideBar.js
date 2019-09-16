@@ -15,9 +15,10 @@ class SideBar extends Component {
 
     if (menus) {
       const statichtmls = menus.statichtmls
+      let delimiter = process.env.os === 'windows' ? '\\' : '/'
 
       var navlinks = statichtmls.map((v, i) => {
-        let splitted = v.split('\\')
+        let splitted = v.split(delimiter)
         let repeats = splitted.length - 1
         let spaces = '.'.repeat(repeats)
         let showmenu = spaces + splitted[splitted.length - 1]
