@@ -4,7 +4,8 @@ import { ConnectedRouter } from 'connected-react-router'
 import { Route, Switch } from 'react-router'
 import configureStore, { history } from './store'
 
-import App from './App'
+// import App from './App'
+import Diagram from 'components/anz/Diagram'
 
 const store = configureStore()
 
@@ -14,7 +15,7 @@ class MainApp extends React.Component {
       <Provider store={store}>
         <ConnectedRouter history={history}>
           <Switch>
-            <Route path='/' component={App} />
+            <Route path='/' component={Diagram} />
           </Switch>
         </ConnectedRouter>
       </Provider>
