@@ -78,7 +78,14 @@ a:hover {
   cursor: pointer;
 }
 
-.features-menu {
+.dropdown:hover .features-menu {    /* This used to be `.features-menu` */
+  display: flex;                    /* Leave everything else alone */
+  flex-direction: column;
+  background: #B2D6FF;
   /* ... */
+}
+
+.features-menu {
+  display: none;
   z-index: 1;
 }
