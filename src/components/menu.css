@@ -66,3 +66,19 @@ a:hover {
 .features-menu li:last-of-type {
   border-bottom: none;
 }
+
+
+.dropdown {
+  position: relative;
+}
+
+.dropdown > span {
+  z-index: 2;
+  position: relative;  /* This is important! */
+  cursor: pointer;
+}
+
+.features-menu {
+  /* ... */
+  z-index: 1;
+}
