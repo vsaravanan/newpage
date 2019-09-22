@@ -5,14 +5,14 @@
 }
 
 /* Mobile Styles */
-@media only screen and (max-width: 400px) {
+@media all and (max-width: 400px) {
   body {
     background-color: #F09A9D; /* Red */
   }
 }
 
 /* Tablet Styles */
-@media only screen and (min-width: 401px) and (max-width: 960px) {
+@media all and (min-width: 401px) and (max-width: 960px) {
   .sign-up,
   .feature-1,
   .feature-2,
@@ -21,26 +21,40 @@
   }
 }
 
+
+
 /* Desktop Styles */
-@media only screen and (min-width: 961px) {
-  body {
-    background-color: #B2D6FF; /* Blue */
+@media all and (min-width: 961px) {
+  .page {
+    width: 960px;
+    margin: 0 auto;
+  }
+  .section {
+    width: 100%;
+  }
+  .feature-1,
+  .feature-2,
+  .feature-3 {
+    width: 33.3%;
+  }
+  .header {
+    height: 400px;
   }
 }
 
 
-page {
+.page {
   display: flex;
   flex-wrap: wrap;
 }
 
 .section {
-  width: 100%;
-  height: 300px;
+  height: 200px;
   display: flex;
   justify-content: center;
   align-items: center;
 }
+
 
 .menu {
   background-color: #5995DA;
@@ -53,7 +67,7 @@ page {
 
 .content {
   background-color: #EAEDF0;
-  height: 600px;
+  height: 400px;
 }
 
 .sign-up {
@@ -71,3 +85,12 @@ page {
 .feature-3 {
   background-color: #C8C6FA;
 }
+
+
+/* .sign-up {
+  height: 200px;
+  order: 1;
+}
+.content {
+  order: 2;
+} */
