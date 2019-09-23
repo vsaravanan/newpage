@@ -1,6 +1,6 @@
-export const action_current_workflow = () => current_workflow => {
-  return {
+export const action_workflow = workflow => dispatch => {
+  dispatch({
     type: 'workflow',
-    data: current_workflow,
-  }
+    data: workflow,
+  })
 }

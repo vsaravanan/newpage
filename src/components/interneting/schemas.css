@@ -30,9 +30,22 @@ body {
   position: relative;
   top: 30px;
   left: 30px;
+
   /* bottom: 30px;
   right: 30px; */
 }
+
+.item-relative2 {
+  position: relative;
+  top: 200px;
+  left: 100px;
+  background-color: chartreuse;
+  height: 3vh;
+  width: 1vw;
+  font-size: 3vh;
+
+}
+
 
 .item-absolute {
   position: absolute;

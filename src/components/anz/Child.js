@@ -1,49 +1,135 @@
-// import React, { Component } from 'react'
+import React, { Component, Fragment } from 'react'
 
-// class Diagram extends Component {
-//   state = {
-//     data: data,
-//   }
+import './anz.css'
 
-//   componentWillMount = () => {
-//     this.setState({ data: data })
-//   }
+class Child extends Component {
+  constructor(props) {
+    super(props)
+    this.elements = new Map()
+  }
 
-//   // onSelect = node => {
-//   //   if (this.state.selected) {
-//   //     this.state.selected.setState({ selected: false })
-//   //   }
-//   //   this.setState({ selected: node })
-//   //   node.setState({ selected: true })
-//   //   if (this.props.onCategorySelect) {
-//   //     this.props.onCategorySelect(node)
-//   //   }
-//   // }
-//   render() {
-//     return (
-//       <div>
-//         <div class='container'>
-//           <div class='myrow '>
-//             <div class='item'>guava</div>
-//             {/* <div class='item item-relative'>lemon</div> */}
-//           </div>
-//           <div class='myrow '>
-//             <div class='item'>apple</div>
-//             {/* <div class='item item-relative'>orange</div> */}
-//           </div>
-//         </div>
+  state = {
+    childarray: {},
+  }
 
-//         {/* <div id='flex-row'>
-//           <div class='flex-item' id='flex'>
-//             Flex box{' '}
-//           </div>
-//           <div class='raw-item' id='raw'>
-//             Raw box
-//           </div>
-//         </div> */}
-//       </div>
-//     )
-//   }
-// }
+  componentDidMount() {
+    var children = this.props.children
+    var childarray = this.state.childarray
+    children.map(v => (childarray[v.name] = false))
+    this.setState({ childarray })
+    var elements = this.elements
+    children.map(v => {
+      console.log(v.name + '  ' + childarray[v.name])
+      elements.set(v.name, null)
+      return null
+    })
+  }
 
-// export default Diagram
+  onClick = (childname, e) => {
+    console.log(' childname : ' + childname)
+    var children = this.props.children
+    var childarray = this.state.childarray
+    children.map(v => console.log(v.name + ' before ' + childarray[v.name]))
+    childarray[childname] = !childarray[childname]
+    this.setState({ childarray })
+    children.map(v => console.log(v.name + ' after  ' + childarray[v.name]))
+
+    this.setState({ mymarginleft: e.target.getBoundingClientRect().left })
+    console.log('mymarginleft ' + this.state.mymarginleft)
+    var elements = this.elements
+    children.map(v => {
+      let tmp = elements.get(v.name)
+      console.log(v.name + ' ---------> ' + tmp.getBoundingClientRect().left)
+      console.log(v.name + ' ---------> ' + tmp.getBoundingClientRect().width)
+      return null
+    })
+  }
+
+  render() {
+    var children = this.props.children
+    const parentmargin = this.props.parentmargin
+    const childarray = this.state.childarray
+    const elements = this.elements
+    const mymarginleft = this.state.mymarginleft
+
+    if (children.length > 0) {
+      console.log(children.length)
+      var top3 = []
+      var grands = []
+      const saveClick = this.onClick
+
+      let grandchildcounts = 0
+
+      function printChildren(value) {
+        let tmp4 = (
+          <div
+            className='item'
+            key={value.name}
+            ref={e => {
+              elements.set(value.name, e)
+            }}
+            onClick={e => saveClick(value.name, e)}
+          >
+            {value.name}
+          </div>
+        )
+        top3.push(tmp4)
+
+        let grandchild = value.children
+        if (grandchild && grandchild.length > 0) {
+          grandchildcounts += grandchild.length
+          console.log(' grandchildcounts ' + grandchildcounts)
+          let sign = childarray[value.name] ? '+' : '-'
+          if (sign) {
+            var signbox = (
+              <span className='item-relative2' key={value.name + '-sign'}>
+                {sign}
+              </span>
+            )
+          }
+          top3.push(signbox)
+          if (childarray[value.name]) {
+            let tmp5 = (
+              <Child
+                children={grandchild}
+                key={value.name + '.children'}
+                parentmargin={mymarginleft}
+              ></Child>
+            )
+            grands.push(tmp5)
+          }
+        }
+      }
+      //if (children.length > 0) {
+      children.forEach(printChildren)
+
+      var rowsize = grandchildcounts > children.length ? grandchildcounts : children.length
+      rowsize = 'row' + rowsize
+      console.log('rowsize ' + rowsize + ', grandchildcounts ' + grandchildcounts)
+
+      if (grands.length > 0) {
+        var grandsFragment = <div className='mysamerow'>{grands}</div>
+      }
+      //}
+    }
+
+    return (
+      // style={{ 'marginLeft': `${parentmargin}px` }}
+      <Fragment>
+        <div className={'myrow ' + rowsize}>{top3}</div>
+        {grandsFragment}
+      </Fragment>
+    )
+  }
+}
+
+// const mapStateToProps = state => ({
+//   current_workflow: state.workflow.current,
+// })
+
+// export default connect(
+//   mapStateToProps,
+//   { action_workflow },
+// )(Child)
+
+export default Child

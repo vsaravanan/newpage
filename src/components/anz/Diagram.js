@@ -1,52 +1,63 @@
-import React, { Component } from 'react'
-import data from './data'
+import React, { Component, Fragment } from 'react'
+import { connect } from 'react-redux'
+import { action_workflow } from 'actions/action-workflow'
+import data1 from 'components/anz/data1'
 
 import './anz.css'
+import Child from './Child'
 
 class Diagram extends Component {
   state = {
-    data: data,
+    children: false,
+  }
+  componentDidMount() {
+    console.log(data1)
+    this.props.action_workflow(data1)
   }
 
-  componentWillMount = () => {
-    this.setState({ data: data })
+  onClick = () => {
+    this.setState({ children: !this.state.children })
   }
 
-  // onSelect = node => {
-  //   if (this.state.selected) {
-  //     this.state.selected.setState({ selected: false })
-  //   }
-  //   this.setState({ selected: node })
-  //   node.setState({ selected: true })
-  //   if (this.props.onCategorySelect) {
-  //     this.props.onCategorySelect(node)
-  //   }
-  // }
   render() {
-    return (
-      <div>
-        <div class='container'>
-          <div class='myrow '>
-            <div class='item'>guava</div>
-            {/* <div class='item item-relative'>lemon</div> */}
-          </div>
-          <div class='myrow '>
-            <div class='item'>apple</div>
-            {/* <div class='item item-relative'>orange</div> */}
-          </div>
-        </div>
+    var workflow = this.props.current_workflow
+    const children = this.state.children
+    if (workflow && workflow.children.length > 0) {
+      var sign = children ? '+' : '-'
+    }
+    var top1
+    if (workflow) {
+      console.log(workflow.name)
 
-        {/* <div id='flex-row'>
-          <div class='flex-item' id='flex'>
-            Flex box{' '}
+      if (children && workflow.children.length > 0) {
+        var top2 = <Child children={workflow.children} parentmargin={100}></Child>
+      }
+
+      if (sign) {
+        var signbox = <span className='item-relative2'> {sign} </span>
+      }
+      top1 = (
+        <div className='container'>
+          <div className='myrow'>
+            <div className='item' onClick={this.onClick}>
+              {workflow.name}
+            </div>
+            {signbox}
           </div>
-          <div class='raw-item' id='raw'>
-            Raw box
-          </div>
-        </div> */}
-      </div>
-    )
+          {top2}
+        </div>
+      )
+    }
+
+    return <Fragment>{top1}</Fragment>
   }
 }
 
-export default Diagram
+const mapStateToProps = state => ({
+  current_workflow: state.workflow.current,
+})
+
+export default connect(
+  mapStateToProps,
+  { action_workflow },
+)(Diagram)
