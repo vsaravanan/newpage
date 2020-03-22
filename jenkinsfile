@@ -35,7 +35,7 @@ node {
 		try
 		{
 
-            dir (${workspace}) {
+            dir ("${workspace}") {
 
                 echo "MVS pwd "
                 sh " pwd "
@@ -87,7 +87,7 @@ node {
     stage('Build')
     {
         
-        dir (${workspace}) {
+        dir ("${workspace}") {
             echo "MVS yarn build "
             sh " yarn build "
         }
