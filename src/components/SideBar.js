@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import { NavLink, withRouter } from 'react-router-dom'
+// import { withRouter } from './MyWithRouter'
 import { connect } from 'react-redux'
 import { fetchMenus } from 'actions/action-menus'
 
@@ -38,9 +39,4 @@ class SideBar extends Component {
 const mapStateToProps = state => ({
   menus: state.data_menus.list,
 })
-export default withRouter(
-  connect(
-    mapStateToProps,
-    { fetchMenus },
-  )(SideBar),
-)
+export default withRouter(connect(mapStateToProps, { fetchMenus })(SideBar))
