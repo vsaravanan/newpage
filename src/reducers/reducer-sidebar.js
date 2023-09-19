@@ -2,7 +2,7 @@ const INIT = {
   show: false,
 }
 
-export default (state = INIT, action) => {
+const reducersidebar = (state = INIT, action) => {
   switch (action.type) {
     case 'sidebar': {
       return {
@@ -14,3 +14,4 @@ export default (state = INIT, action) => {
       return state
   }
 }
+export default reducersidebar

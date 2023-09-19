@@ -1,4 +1,4 @@
-export default (state = [], action) => {
+const reducermenus = (state = [], action) => {
   switch (action.type) {
     case 'data_menus': {
       return {
@@ -10,3 +10,5 @@ export default (state = [], action) => {
       return state
   }
 }
+
+export default reducermenus
